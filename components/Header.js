@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/24/solid'
 import React from 'react';
 import Image from 'next/image';
-import Headeritem from './Headeritem';
+import Headeritem from './HeaderItem.js';
 
 
 
