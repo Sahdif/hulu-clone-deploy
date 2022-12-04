@@ -6,7 +6,7 @@ import Results from '../components/Results'
 import requests from '../utils/requests'
 
 
-export default function Home({results}) {
+export default function Home({data}) {
   return (
     <div>
       <Head>
@@ -21,7 +21,7 @@ export default function Home({results}) {
 
     {/* Results */}
 
-      <Results results={results} />
+      <Results data={data} />
 
     </div>
   );
@@ -30,12 +30,12 @@ export default function Home({results}) {
 export async function getServerSideProps(context) {
   const genre = context.query.genre;
 
-  const request = await fetch(`https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending.url}`
-  ).then(res => res.json());
-
+  const res = await fetch(`https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending.url}`)
+  const data = await res.json();
+  console.log(data)
   return {
      props: {
-      results: request.results,
+      data,
      },
   }
 
